@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,36 +8,96 @@
     <title>The story of my life - Netflix</title>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
-    <body>
-    <header>
-        <section class="hero">
-                <div class="hero__btn-container top">
-                    <div role="button" class="btn">
-                        <span class="material-icons">cast</span>
+
+<body>
+    <div id="app">
+        <div class="blur-container" :class="appStatus.seasonSelectorShow ? 'blurred' : ''"> 
+            <header>
+                <section class="hero">
+                    <div class="hero__btn-container top">
+                        <div role="button" class="btn">
+                            <span class="material-icons">cast</span>
+                        </div>
+                        <div role="button" class="btn">
+                            <span class="material-icons">clear</span>
+                        </div>
                     </div>
-                    <div role="button" class="btn">
-                        <span class="material-icons">clear</span>
+                    <div class="hero__btn-container bottom">
+                        <span class="material-icons">
+                            volume_mute
+                        </span>
                     </div>
-                </div>
-                <div class="hero__btn-container bottom">
-                    <div role="button" class="btn">
-                        <span class="material-icons">cast</span>
+                </section>
+                <section class="info">
+                    <h2>The story of my life</h2>
+                    <span class="info__year">1999</span>
+                    <div class="t">T</div><span class="info__length">92 seasons</span>
+                    <div class="hd">HD</div>
+                </section>
+                <section class="btn-group">
+                    <div class="btn btn--white" role="button">
+                        <span class="material-icons">play_arrow</span>Available from June
                     </div>
-                    <div role="button" class="btn">
-                        <span class="material-icons">clear</span>
+                    <div class="btn" role="button"><span class="material-icons">download</span>Download CV</div>
+                </section>
+                <section class="episode-info">
+                    <h3>S3:E3 The tech guy</h3>
+                    <p>I have a burning desire to improve myself every day and take every opportunity to learn new
+                        skills or deepen my understanding of reality. The culture of hard work does not perturb me, it
+                        inspires me.</p>
+                    <div class="cast">
+                        <div>Cast: Luigi Bardella Gerbi</div>
+                        <div>Created by: Me, myself, and I</div>
                     </div>
-                </div>
-        </section>
-        <section class="info">
-            <h2>The story of my life</h2>
-            <span class="info__year">1999</span><span class="info__length">23 very long years</span><span class="info__quality">HD</span>
-        </section>
-    </header>
+                    <div class="btns">
+                        <div role="btn" class="btn"><span class="material-icons">add</span><span class="btn-label">La
+                                mia lista</span></div>
+                        <div role="btn" class="btn"><span class="material-icons">ios_share</span><span
+                                class="btn-label">Valuta</span></div>
+                        <div role="btn" class="btn"><span class="material-icons">send</span><span
+                                class="btn-label">Email</span></div>
+                    </div>
+                </section>
+            </header>
+            <main>
+                <section class="episodes">
+                    <div @click="toggleSeasonSelector()" class="season-selector-toggle">Season {{appStatus.currentSeason
+                        + 1}}: {{ seasons[appStatus.currentSeason].title }}
+                        <span class="material-icons">expand_more</span>
+                    </div>
+                    <div class="episodes-container">
+                        <div class="episode" v-for="(episode, index) in seasons[appStatus.currentSeason].episodes">
+                            <div class="episode-top">
+                                <img :src="episode.thumb" class="episode-thumb">
+                                <div class="episode-info">
+                                    <h4>{{index+1}}. {{ episode.title }}</h4>
+                                    <span>{{ episode.when }}</span>
+                                </div>
+                            </div>
+                            <div class="episode-desc">
+                                {{ episode.description }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div class="season-selector" :class="appStatus.seasonSelectorShow ? 'season-selector-show' : ''">
+            <div v-for="(season, index) in seasons" @click="changeCurrentSeason(index)"
+                :class="index == appStatus.currentSeason ? 'season--active':''" class="season">{{season.title}}</div>
+            <div @click="toggleSeasonSelector" class="close-btn">                            
+                <span class="material-icons">clear</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
