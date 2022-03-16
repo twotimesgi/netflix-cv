@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(12, 12, 12);
+    color: white;
+    font-family: 'Martel Sans', sans-serif;;
+}
+
+.hero{
+    width: 100%;
+    position: relative;
+}
+
+.hero img{
+    width: 100%;
+}
+
+.hero__btn-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn{
+    width: 2rem;
+    height: 2rem;
+    background-color: black;
+    border-radius: 50%;
+    opacity: 0.8;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn span{
+    font-size: 1.2rem;
+}
+
+
+.info{
+    padding: 0px 15px;
+}
+
+.info h2{
+    font-size: 1rem;
+}
+
+.info span{
+    font-size: 0.7rem;
+}
